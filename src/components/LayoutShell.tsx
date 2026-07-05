@@ -158,7 +158,7 @@ export const LayoutShell: React.FC<LayoutShellProps> = ({ children }) => {
                   </div>
                   <span className="font-bold text-lg dark:text-white">InternFlow</span>
                 </div>
-                <nav className="space-y-1.5">
+                <nav className="space-y-1.5 relative">
                   {navigation.map((item) => {
                     const isActive = location.pathname === item.path;
                     const Icon = item.icon;
@@ -166,12 +166,19 @@ export const LayoutShell: React.FC<LayoutShellProps> = ({ children }) => {
                       <button
                         key={item.name}
                         onClick={() => navigate(item.path)}
-                        className={`w-full flex items-center space-x-3 px-3 py-2 rounded-xl text-sm font-medium transition-all cursor-pointer outline-none ${
+                        className={`w-full flex items-center space-x-3 px-3 py-2 rounded-xl text-sm font-medium transition-all cursor-pointer outline-none relative z-10 ${
                           isActive
-                            ? 'bg-indigo-50 text-indigo-650 dark:bg-indigo-950/40 dark:text-indigo-400'
-                            : 'text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800'
+                            ? 'text-indigo-650 dark:text-indigo-400 font-semibold'
+                            : 'text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
                         }`}
                       >
+                        {isActive && (
+                          <motion.span
+                            layoutId="activeNavHighlightMobile"
+                            className="absolute inset-0 bg-indigo-50 dark:bg-indigo-950/30 border-l-2 border-indigo-600 dark:border-indigo-400 rounded-xl -z-10"
+                            transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                          />
+                        )}
                         <Icon className="h-4.5 w-4.5" />
                         <span>{item.name}</span>
                       </button>
@@ -243,7 +250,7 @@ export const LayoutShell: React.FC<LayoutShellProps> = ({ children }) => {
           </div>
 
           {/* Navigation Links */}
-          <nav className="space-y-1">
+          <nav className="space-y-1 relative">
             {navigation.map((item) => {
               const isActive = location.pathname === item.path || 
                               (item.path !== '/' && location.pathname.startsWith(item.path));
@@ -252,14 +259,21 @@ export const LayoutShell: React.FC<LayoutShellProps> = ({ children }) => {
                 <button
                   key={item.name}
                   onClick={() => navigate(item.path)}
-                  className={`w-full flex items-center py-2 px-3 rounded-xl text-sm font-medium transition-all cursor-pointer outline-none relative group ${
+                  className={`w-full flex items-center py-2 px-3 rounded-xl text-sm font-medium transition-all duration-200 cursor-pointer outline-none relative group z-10 ${
                     isActive
-                      ? 'bg-indigo-50/70 text-indigo-600 dark:bg-indigo-950/20 dark:text-indigo-400'
-                      : 'text-slate-500 hover:text-slate-900 dark:text-slate-450 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800/50'
+                      ? 'text-indigo-600 dark:text-indigo-400 font-semibold'
+                      : 'text-slate-500 hover:text-slate-900 dark:text-slate-450 dark:hover:text-white'
                   } ${isSidebarCollapsed ? 'justify-center' : 'space-x-3'}`}
                 >
-                  <Icon className={`h-4.5 w-4.5 ${
-                    isActive ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-400 dark:text-slate-550'
+                  {isActive && (
+                    <motion.span
+                      layoutId="activeNavHighlight"
+                      className="absolute inset-0 bg-indigo-50/70 dark:bg-indigo-950/20 border-l-2 border-indigo-600 dark:border-indigo-400 rounded-xl -z-10 shadow-sm"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  <Icon className={`h-4.5 w-4.5 transition-colors ${
+                    isActive ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-450 dark:text-slate-500 group-hover:text-slate-900 dark:group-hover:text-white'
                   }`} />
                   {!isSidebarCollapsed && <span>{item.name}</span>}
                   
@@ -363,13 +377,24 @@ export const LayoutShell: React.FC<LayoutShellProps> = ({ children }) => {
             </div>
 
             {/* Theme Toggle */}
-            <button
+            <motion.button
+              whileTap={{ scale: 0.92 }}
               onClick={toggleTheme}
-              className="p-2 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer border border-transparent hover:border-slate-200 dark:hover:border-slate-700/50"
+              className="p-2 rounded-xl text-slate-500 dark:text-slate-450 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all cursor-pointer border border-transparent hover:border-slate-200 dark:hover:border-slate-700/50 relative overflow-hidden"
               title="Toggle theme"
             >
-              {theme === 'light' ? <Moon className="h-4.5 w-4.5" /> : <Sun className="h-4.5 w-4.5" />}
-            </button>
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={theme}
+                  initial={{ y: -12, opacity: 0, rotate: -90 }}
+                  animate={{ y: 0, opacity: 1, rotate: 0 }}
+                  exit={{ y: 12, opacity: 0, rotate: 90 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {theme === 'light' ? <Moon className="h-4.5 w-4.5" /> : <Sun className="h-4.5 w-4.5" />}
+                </motion.div>
+              </AnimatePresence>
+            </motion.button>
 
             {/* Notification Icon */}
             <div className="relative">

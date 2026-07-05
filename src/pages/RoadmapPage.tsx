@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { ProgressBar } from '../components/ProgressBar';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   CheckCircle2,
   Video,
   FileText,
   ExternalLink,
   TrendingUp,
-  Award
+  Award,
+  Sparkles,
+  BookOpen,
+  Check
 } from 'lucide-react';
 
 const GithubIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
@@ -103,9 +107,9 @@ export const RoadmapPage: React.FC = () => {
   const [roadmapData, setRoadmapData] = useState(initialRoadmapData);
 
   const levelTabs = [
-    { id: 'beginner', label: 'Beginner Foundations', count: 0 },
-    { id: 'intermediate', label: 'Intermediate Engineering', count: 0 },
-    { id: 'advanced', label: 'Advanced Cloud & Devops', count: 0 }
+    { id: 'beginner', label: 'Beginner Foundations' },
+    { id: 'intermediate', label: 'Intermediate Engineering' },
+    { id: 'advanced', label: 'Advanced Cloud & DevOps' }
   ];
 
   // Calculate percentage of level completion
@@ -166,34 +170,38 @@ export const RoadmapPage: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header Banner */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between p-6 bg-indigo-900 text-white rounded-2xl shadow-sm relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-80 h-80 bg-indigo-500/10 rounded-full blur-2xl" />
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between p-6 md:p-8 bg-gradient-to-br from-indigo-950 via-slate-900 to-purple-950 text-white rounded-3xl border border-white/5 shadow-xl relative overflow-hidden">
+        {/* Floating background decorative blobs */}
+        <div className="absolute top-0 right-0 w-80 h-80 bg-indigo-500/10 rounded-full blur-[90px] animate-pulse-soft pointer-events-none" />
+        <div className="absolute bottom-0 left-1/3 w-60 h-60 bg-purple-500/10 rounded-full blur-[80px] animate-float-slower pointer-events-none" />
+
         <div className="space-y-2 relative z-10">
-          <span className="text-[10px] bg-white/10 text-indigo-200 border border-white/10 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">
-            Roadmap Board
+          <span className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/5 text-[10px] uppercase font-bold tracking-wider text-indigo-300">
+            <Sparkles className="h-3 w-3" />
+            <span>Curriculum Board</span>
           </span>
-          <h1 className="text-xl md:text-2xl font-bold leading-normal">Interactive Engineering Syllabus</h1>
-          <p className="text-xs text-indigo-200 max-w-md leading-relaxed">
+          <h1 className="text-xl md:text-3xl font-extrabold font-heading tracking-tight">Interactive Engineering Syllabus</h1>
+          <p className="text-xs md:text-sm text-indigo-200/90 max-w-xl font-light leading-relaxed">
             Follow our structured curriculum to master industry-grade frontend, backend, and cloud architectures.
           </p>
         </div>
 
         {/* Progress summary widget */}
-        <div className="mt-6 lg:mt-0 w-full lg:w-64 bg-white/5 border border-white/10 rounded-xl p-4.5 relative z-10 space-y-2">
+        <div className="mt-6 lg:mt-0 w-full lg:w-64 bg-white/5 border border-white/10 rounded-2xl p-4.5 relative z-10 space-y-2.5 backdrop-blur-md">
           <div className="flex justify-between items-center text-xs font-semibold">
-            <span className="text-indigo-200">Overall Syllabus Progress</span>
-            <span className="text-white">{overallProgress}%</span>
+            <span className="text-indigo-250">Overall Syllabus Progress</span>
+            <span className="text-white font-bold">{overallProgress}%</span>
           </div>
           <ProgressBar value={overallProgress} color="success" size="sm" />
-          <span className="text-[9px] text-indigo-300 font-semibold block pt-1 flex items-center">
-            <Award className="h-3 w-3 mr-1" /> Finish all modules to claim certification
+          <span className="text-[9px] text-indigo-300 font-bold block pt-0.5 flex items-center">
+            <Award className="h-3.5 w-3.5 mr-1 text-yellow-400" /> Finish all modules to claim certification
           </span>
         </div>
       </div>
 
       {/* Tabs list */}
       <div className="space-y-4">
-        <div className="flex p-1 bg-slate-100 dark:bg-slate-900 rounded-2xl max-w-max space-x-1">
+        <div className="flex p-1 bg-slate-100 dark:bg-slate-900 border border-slate-200/40 dark:border-slate-800 rounded-2xl max-w-max space-x-1 relative">
           {levelTabs.map((tab) => {
             const isActive = tab.id === levelTab;
             const progress = calculateLevelProgress(tab.id);
@@ -201,17 +209,24 @@ export const RoadmapPage: React.FC = () => {
               <button
                 key={tab.id}
                 onClick={() => setLevelTab(tab.id)}
-                className={`py-2 px-3.5 rounded-xl text-xs md:text-sm font-medium transition-all cursor-pointer outline-none flex items-center space-x-2 ${
+                className={`py-2.5 px-4 rounded-xl text-xs md:text-sm font-medium transition-all duration-200 cursor-pointer outline-none flex items-center space-x-2 relative z-10 ${
                   isActive
-                    ? 'bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-sm font-semibold'
+                    ? 'text-indigo-650 dark:text-indigo-400 font-semibold'
                     : 'text-slate-500 dark:text-slate-450 hover:text-slate-800 dark:hover:text-slate-200'
                 }`}
               >
+                {isActive && (
+                  <motion.span
+                    layoutId="activeRoadmapTabHighlight"
+                    className="absolute inset-0 bg-white dark:bg-slate-800 rounded-xl shadow-sm -z-10"
+                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                  />
+                )}
                 <span>{tab.label}</span>
                 <span className={`px-1.5 py-0.2 rounded text-[9px] font-bold ${
                   isActive 
                     ? 'bg-indigo-50 text-indigo-650 dark:bg-indigo-950/60 dark:text-indigo-400' 
-                    : 'bg-slate-200/50 dark:bg-slate-800 text-slate-500'
+                    : 'bg-slate-250/50 dark:bg-slate-850 text-slate-500'
                 }`}>
                   {progress}%
                 </span>
@@ -224,96 +239,110 @@ export const RoadmapPage: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Main Syllabus Flow */}
           <div className="lg:col-span-2 space-y-6">
-            {roadmapData[levelTab].map((topic) => {
-              const completedCount = topic.resources.filter(r => r.completed).length;
-              return (
-                <div key={topic.id} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm space-y-4">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-sm font-bold text-slate-800 dark:text-white">{topic.title}</h3>
-                      <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
-                        {topic.description}
-                      </p>
-                    </div>
-                    <span className="text-[10px] font-semibold text-slate-400 bg-slate-50 dark:bg-slate-950 px-2 py-0.5 rounded border border-slate-100 dark:border-slate-850 shrink-0">
-                      {completedCount} / {topic.resources.length} Done
-                    </span>
-                  </div>
-
-                  {/* Resources checklist */}
-                  <div className="divide-y divide-slate-100 dark:divide-slate-850 pt-2 border-t border-slate-50 dark:border-slate-850">
-                    {topic.resources.map((res) => {
-                      const getIcon = (type: string) => {
-                        switch (type) {
-                          case 'video': return Video;
-                          case 'github': return GithubIcon;
-                          default: return FileText;
-                        }
-                      };
-                      const Icon = getIcon(res.type);
-
-                      return (
-                        <div
-                          key={res.id}
-                          onClick={() => handleToggleResource(levelTab, topic.id, res.id)}
-                          className="py-3 flex items-center justify-between gap-4 cursor-pointer hover:bg-slate-50/30 dark:hover:bg-slate-850/20 px-2 rounded-xl transition-colors first:mt-1"
-                        >
-                          <div className="flex items-center space-x-3.5 min-w-0">
-                            {/* Checkbox */}
-                            <div className={`h-4.5 w-4.5 rounded-full flex items-center justify-center shrink-0 border transition-all ${
-                              res.completed
-                                ? 'bg-emerald-500 border-emerald-500 text-white'
-                                : 'border-slate-300 dark:border-slate-700'
-                            }`}>
-                              {res.completed && <CheckCircle2 className="h-3 w-3 stroke-[3]" />}
-                            </div>
-
-                            {/* Resource label */}
-                            <div className="min-w-0">
-                              <p className={`text-xs font-semibold truncate ${
-                                res.completed
-                                  ? 'text-slate-400 line-through dark:text-slate-500'
-                                  : 'text-slate-850 dark:text-slate-200'
-                              }`}>
-                                {res.title}
-                              </p>
-                              <div className="flex items-center space-x-1.5 text-[9px] text-slate-400 capitalize mt-0.5">
-                                <Icon className="h-3 w-3" />
-                                <span>{res.type}</span>
-                                <span>•</span>
-                                <span>{res.durationOrSize}</span>
-                              </div>
-                            </div>
-                          </div>
-
-                          <a
-                            href={res.url}
-                            target="_blank"
-                            rel="noreferrer"
-                            onClick={(e) => e.stopPropagation()}
-                            className="text-slate-400 hover:text-indigo-650 dark:hover:text-indigo-400 p-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors shrink-0"
-                          >
-                            <ExternalLink className="h-3.5 w-3.5" />
-                          </a>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={levelTab}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.25 }}
+                className="space-y-6"
+              >
+                {roadmapData[levelTab].map((topic) => {
+                  const completedCount = topic.resources.filter(r => r.completed).length;
+                  return (
+                    <div key={topic.id} className="bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-slate-800/80 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 space-y-4 shadow-premium">
+                      <div className="flex justify-between items-start">
+                        <div className="space-y-1">
+                          <h3 className="text-sm md:text-base font-extrabold text-slate-800 dark:text-white flex items-center">
+                            <BookOpen className="h-4.5 w-4.5 mr-2 text-indigo-500" />
+                            {topic.title}
+                          </h3>
+                          <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed max-w-xl">
+                            {topic.description}
+                          </p>
                         </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              );
-            })}
+                        <span className="text-[10px] font-bold text-slate-400 bg-slate-50 dark:bg-slate-950 px-2 py-1 rounded-xl border border-slate-100 dark:border-slate-850 shrink-0">
+                          {completedCount} / {topic.resources.length} Done
+                        </span>
+                      </div>
+
+                      {/* Resources checklist */}
+                      <div className="divide-y divide-slate-100 dark:divide-slate-850 pt-2 border-t border-slate-50 dark:border-slate-850">
+                        {topic.resources.map((res) => {
+                          const getIcon = (type: string) => {
+                            switch (type) {
+                              case 'video': return Video;
+                              case 'github': return GithubIcon;
+                              default: return FileText;
+                            }
+                          };
+                          const Icon = getIcon(res.type);
+
+                          return (
+                            <div
+                              key={res.id}
+                              onClick={() => handleToggleResource(levelTab, topic.id, res.id)}
+                              className="py-3 flex items-center justify-between gap-4 cursor-pointer hover:bg-slate-50/40 dark:hover:bg-slate-850/20 px-2.5 rounded-xl transition-colors first:mt-1 group"
+                            >
+                              <div className="flex items-center space-x-3.5 min-w-0">
+                                {/* Checkbox with animation */}
+                                <div className={`h-4.5 w-4.5 rounded-full flex items-center justify-center shrink-0 border transition-all duration-200 group-hover:scale-105 ${
+                                  res.completed
+                                    ? 'bg-emerald-500 border-emerald-500 text-white'
+                                    : 'border-slate-300 dark:border-slate-700 hover:border-slate-450 dark:hover:border-slate-550'
+                                }`}>
+                                  {res.completed && <Check className="h-3 w-3 stroke-[3]" />}
+                                </div>
+
+                                {/* Resource label */}
+                                <div className="min-w-0">
+                                  <p className={`text-xs font-semibold truncate transition-colors ${
+                                    res.completed
+                                      ? 'text-slate-400 line-through dark:text-slate-500'
+                                      : 'text-slate-850 dark:text-slate-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400'
+                                  }`}>
+                                    {res.title}
+                                  </p>
+                                  <div className="flex items-center space-x-1.5 text-[9px] text-slate-400 capitalize mt-0.5 font-medium">
+                                    <Icon className="h-3 w-3" />
+                                    <span>{res.type}</span>
+                                    <span>•</span>
+                                    <span>{res.durationOrSize}</span>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <a
+                                href={res.url}
+                                target="_blank"
+                                rel="noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                className="text-slate-400 hover:text-indigo-650 dark:hover:text-indigo-400 p-1.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors shrink-0"
+                              >
+                                <ExternalLink className="h-3.5 w-3.5" />
+                              </a>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  );
+                })}
+              </motion.div>
+            </AnimatePresence>
           </div>
 
           {/* Sidebar level information */}
           <div className="space-y-6">
-            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm space-y-4">
+            <div className="bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-slate-800/80 rounded-2xl p-5 shadow-sm space-y-4 shadow-premium">
               <h3 className="text-xs font-bold text-slate-800 dark:text-white uppercase tracking-wider">
                 Level Competencies
               </h3>
               <div className="space-y-3.5 text-xs text-slate-650 dark:text-slate-350">
                 {levelTab === 'beginner' && (
                   <>
-                    <p className="leading-relaxed">Beginner Foundations establishes baseline programming discipline:</p>
+                    <p className="leading-relaxed font-light">Beginner Foundations establishes baseline programming discipline:</p>
                     <div className="space-y-2 pt-1">
                       <div className="flex items-center space-x-2">
                         <CheckCircle2 className="h-4 w-4 text-emerald-500" />
@@ -332,7 +361,7 @@ export const RoadmapPage: React.FC = () => {
                 )}
                 {levelTab === 'intermediate' && (
                   <>
-                    <p className="leading-relaxed">Intermediate Engineering addresses database schemas and backend concurrency APIs:</p>
+                    <p className="leading-relaxed font-light">Intermediate Engineering addresses database schemas and backend concurrency APIs:</p>
                     <div className="space-y-2 pt-1">
                       <div className="flex items-center space-x-2">
                         <CheckCircle2 className="h-4 w-4 text-emerald-500" />
@@ -351,7 +380,7 @@ export const RoadmapPage: React.FC = () => {
                 )}
                 {levelTab === 'advanced' && (
                   <>
-                    <p className="leading-relaxed">Advanced DevOps ensures applications are deployment-ready and monitored:</p>
+                    <p className="leading-relaxed font-light">Advanced DevOps ensures applications are deployment-ready and monitored:</p>
                     <div className="space-y-2 pt-1">
                       <div className="flex items-center space-x-2">
                         <CheckCircle2 className="h-4 w-4 text-emerald-500" />
@@ -371,9 +400,9 @@ export const RoadmapPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm text-xs text-slate-500 dark:text-slate-400 flex items-start space-x-2.5">
-              <TrendingUp className="h-5 w-5 text-indigo-500 shrink-0 mt-0.5" />
-              <p className="leading-normal">
+            <div className="bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-slate-800/80 rounded-2xl p-5 shadow-sm text-xs text-slate-500 dark:text-slate-400 flex items-start space-x-2.5 shadow-premium">
+              <TrendingUp className="h-5 w-5 text-indigo-500 shrink-0 mt-0.5 animate-pulse" />
+              <p className="leading-normal font-light">
                 Roadmap completion rates contribute <span className="font-semibold text-slate-800 dark:text-slate-200">20%</span> towards your weekly evaluation score. Keep learning!
               </p>
             </div>

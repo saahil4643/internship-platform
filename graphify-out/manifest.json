@@ -1,0 +1,222 @@
+{
+  "eslint.config.js": {
+    "mtime": 1783065104.899224,
+    "ast_hash": "0355276bc79439afe3c53e3a2470ca1e",
+    "semantic_hash": ""
+  },
+  "package.json": {
+    "mtime": 1783066486.1889815,
+    "ast_hash": "b8c1f7b62d015ee062ca80a414548ead",
+    "semantic_hash": ""
+  },
+  "src/App.tsx": {
+    "mtime": 1783066779.0805988,
+    "ast_hash": "12e71bae7540b5163270c3ee15c76012",
+    "semantic_hash": ""
+  },
+  "src/components/Badge.tsx": {
+    "mtime": 1783066541.6532576,
+    "ast_hash": "af3d4d6a76159b79c29fbde6c0000983",
+    "semantic_hash": ""
+  },
+  "src/components/Breadcrumb.tsx": {
+    "mtime": 1783066551.4380229,
+    "ast_hash": "8f036bdb3a68f8465a1f0ed39e603ed6",
+    "semantic_hash": ""
+  },
+  "src/components/Charts.tsx": {
+    "mtime": 1783070501.4329891,
+    "ast_hash": "ea975ea74cdcd792aa792ddd8e66e067",
+    "semantic_hash": ""
+  },
+  "src/components/Drawer.tsx": {
+    "mtime": 1783066588.378171,
+    "ast_hash": "1e7fa60d80437c830271550b954fd8ec",
+    "semantic_hash": ""
+  },
+  "src/components/EmptyState.tsx": {
+    "mtime": 1783070506.202934,
+    "ast_hash": "2efc1b5b8d568713aa093885ea550d42",
+    "semantic_hash": ""
+  },
+  "src/components/FileUpload.tsx": {
+    "mtime": 1783066594.9353957,
+    "ast_hash": "4ff7f7da6bc996318d4f79b66f89c15f",
+    "semantic_hash": ""
+  },
+  "src/components/LayoutShell.tsx": {
+    "mtime": 1783233983.266246,
+    "ast_hash": "70158c1b199503b5afe37096b6ca890b",
+    "semantic_hash": ""
+  },
+  "src/components/LoadingSkeleton.tsx": {
+    "mtime": 1783066562.946304,
+    "ast_hash": "2107ea41276b287e82c1c126712f5563",
+    "semantic_hash": ""
+  },
+  "src/components/Modal.tsx": {
+    "mtime": 1783066583.5388658,
+    "ast_hash": "019efab3a3cdc36071f1140c5df57617",
+    "semantic_hash": ""
+  },
+  "src/components/ProgressBar.tsx": {
+    "mtime": 1783066546.5131,
+    "ast_hash": "78f3311bdcd33ad19052a7f4223af67c",
+    "semantic_hash": ""
+  },
+  "src/components/SearchBox.tsx": {
+    "mtime": 1783066567.920353,
+    "ast_hash": "c9d9bc5db0b9fa5d2fd7ad6af21ba027",
+    "semantic_hash": ""
+  },
+  "src/components/Tabs.tsx": {
+    "mtime": 1783070513.0741897,
+    "ast_hash": "9979d08aac393b9758a4aad22cf3b839",
+    "semantic_hash": ""
+  },
+  "src/components/Timeline.tsx": {
+    "mtime": 1783066573.0406475,
+    "ast_hash": "15720269766c75800c98748a7f0fa718",
+    "semantic_hash": ""
+  },
+  "src/context/AppContext.tsx": {
+    "mtime": 1783070519.8839428,
+    "ast_hash": "23359bfecabf1b8d833929187a15555b",
+    "semantic_hash": ""
+  },
+  "src/main.tsx": {
+    "mtime": 1783065074.0793612,
+    "ast_hash": "787e5a07efeb2bf6209d5937195f2f68",
+    "semantic_hash": ""
+  },
+  "src/pages/AdminDashboard.tsx": {
+    "mtime": 1783070528.0698273,
+    "ast_hash": "154eac033a0185fe7a16c650e7374d41",
+    "semantic_hash": ""
+  },
+  "src/pages/AnnouncementsPage.tsx": {
+    "mtime": 1783070787.244587,
+    "ast_hash": "80bc669e9b038046f6b4ffd4e1cd71b5",
+    "semantic_hash": ""
+  },
+  "src/pages/AuthPage.tsx": {
+    "mtime": 1783233963.40954,
+    "ast_hash": "67bc647f25932c465c06a3b72fbccf11",
+    "semantic_hash": ""
+  },
+  "src/pages/DocRequestsPage.tsx": {
+    "mtime": 1783070551.571859,
+    "ast_hash": "cc4206baeaba4b67f29028ad17de7df4",
+    "semantic_hash": ""
+  },
+  "src/pages/ProjectsPage.tsx": {
+    "mtime": 1783067453.31059,
+    "ast_hash": "4d4700979db93c9fcfd2f59080c141a7",
+    "semantic_hash": ""
+  },
+  "src/pages/RoadmapPage.tsx": {
+    "mtime": 1783234010.6886594,
+    "ast_hash": "f80b4d8408fb17ae2cfcb852eb62fb79",
+    "semantic_hash": ""
+  },
+  "src/pages/SettingsPage.tsx": {
+    "mtime": 1783070569.344642,
+    "ast_hash": "b0493b2473b8c5da059073c5e4f5529d",
+    "semantic_hash": ""
+  },
+  "src/pages/StudentDashboard.tsx": {
+    "mtime": 1783234075.291437,
+    "ast_hash": "fbddc0a35e5f9de79b249be06bc7e75c",
+    "semantic_hash": ""
+  },
+  "src/pages/StudentManagement.tsx": {
+    "mtime": 1783070255.3330505,
+    "ast_hash": "8f105120a048bf3880c56f7473559f15",
+    "semantic_hash": ""
+  },
+  "src/pages/StudentProfile.tsx": {
+    "mtime": 1783070265.0441778,
+    "ast_hash": "bb953b60f2bcb0b5a0a71163f9f1cb23",
+    "semantic_hash": ""
+  },
+  "src/pages/TasksPage.tsx": {
+    "mtime": 1783070580.20593,
+    "ast_hash": "2c5d194e65384988f2eab45c6c004b73",
+    "semantic_hash": ""
+  },
+  "src/types/index.ts": {
+    "mtime": 1783066514.0868678,
+    "ast_hash": "641b86e0a19f3740ec8cf6ad11b0c74d",
+    "semantic_hash": ""
+  },
+  "tsconfig.app.json": {
+    "mtime": 1783065073.7513955,
+    "ast_hash": "5f2dafd737dea8a4ddcbb10f5113ac5a",
+    "semantic_hash": ""
+  },
+  "tsconfig.json": {
+    "mtime": 1783065073.7642508,
+    "ast_hash": "a3d39fa780ebff65444de257f291ce6c",
+    "semantic_hash": ""
+  },
+  "tsconfig.node.json": {
+    "mtime": 1783065073.7762134,
+    "ast_hash": "f9cb81ddcea69ffdab672fc8c48dca66",
+    "semantic_hash": ""
+  },
+  "vercel.json": {
+    "mtime": 1783140243.7403593,
+    "ast_hash": "854af7689869f456e2e4bee84a1b2946",
+    "semantic_hash": ""
+  },
+  "vite.config.ts": {
+    "mtime": 1783066493.3739398,
+    "ast_hash": "e71f334c92473b2f4db141aa06b730e1",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1783140243.7403593,
+    "ast_hash": "5b2034088cb00c0283164bba5b7eda27",
+    "semantic_hash": ""
+  },
+  "index.html": {
+    "mtime": 1783065104.8573916,
+    "ast_hash": "7575b34f01e859e91a136b31e709daeb",
+    "semantic_hash": ""
+  },
+  "public/favicon.svg": {
+    "mtime": 1783065073.8929994,
+    "ast_hash": "7e840862161341271697daa99a40d76b",
+    "semantic_hash": ""
+  },
+  "public/icons.svg": {
+    "mtime": 1783065073.9291642,
+    "ast_hash": "3b4fcfcf393eca4d264dca4a4663bc37",
+    "semantic_hash": ""
+  },
+  "src/assets/hero.png": {
+    "mtime": 1783065073.8355894,
+    "ast_hash": "aead493361b27e7510691c5d7072dfc1",
+    "semantic_hash": ""
+  },
+  "src/assets/react.svg": {
+    "mtime": 1783065073.9758132,
+    "ast_hash": "f0402b67b6ce880f65666bb49e841696",
+    "semantic_hash": ""
+  },
+  "src/assets/vite.svg": {
+    "mtime": 1783065074.0095317,
+    "ast_hash": "9960a24288958394ac50e57ff638b036",
+    "semantic_hash": ""
+  },
+  ".agents/rules/graphify.md": {
+    "mtime": 1783231962.8974967,
+    "ast_hash": "a0e4d192b9e2e17256124dbfc8e24e6a",
+    "semantic_hash": ""
+  },
+  ".agents/workflows/graphify.md": {
+    "mtime": 1783231962.903119,
+    "ast_hash": "637776aa6f7496d069afe7520c845c8a",
+    "semantic_hash": ""
+  }
+}
